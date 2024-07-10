@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Product from '../../components/product';
 import { message } from 'antd';
+import Layout from '../layout';
 
 const Dashboard = () => {
 
@@ -38,8 +39,7 @@ const Dashboard = () => {
     }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
-    <Header />
+   <Layout>
     <div className="flex-1 overflow-y-auto bg-gray-100 p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
@@ -47,8 +47,8 @@ const Dashboard = () => {
         ))}
       </div>
     </div>
-    <Footer />
-  </div>
+   </Layout>
+
   );
 };
 

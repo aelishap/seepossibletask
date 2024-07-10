@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
+import Layout from '../layout';
 
 const Profile = () => {
   const userProfile = {
@@ -14,9 +15,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <Header />
-      <div className="flex items-center justify-center flex-1">
+    <Layout>
+      <div className="flex items-center justify-center mt-12">
         <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-screen-lg">
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">User Profile</h2>
           <div className="grid grid-cols-2 gap-4">
@@ -53,8 +53,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+      </Layout>
   );
 };
 

@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Login from './pages/login';
+import Register from './pages/register';
+import Dashboard from './pages/dashboard';
+import Cart from './pages/cart';
+import Profile from './pages/profile';
 
 function App() {
+  const {isAuthenticated} = useSelector((state) => state.authReducer);
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />}
+        />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        />
+          <Route
+          path="/cart"
+          element={isAuthenticated ? <Cart /> : <Navigate to="/login" />}
+        />
+          <Route
+          path="/profile"
+          element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="*"
+          element={
+            isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

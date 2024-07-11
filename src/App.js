@@ -5,11 +5,11 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Dashboard from './pages/dashboard';
 import Cart from './pages/cart';
-import Profile from './pages/profile';
 
 function App() {
-  const {isAuthenticated} = useSelector((state) => state.authReducer);
-
+  const state = useSelector((state) => state.authReducer);
+  const user = localStorage.getItem("user");
+  const isAuthenticated = state?.isAuthenticated || JSON.parse(user)?.username ? true : false;
   
   return (
     <Router>
@@ -26,14 +26,11 @@ function App() {
           path="/dashboard"
           element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
         />
-          <Route
+        <Route
           path="/cart"
           element={isAuthenticated ? <Cart /> : <Navigate to="/login" />}
         />
-          <Route
-          path="/profile"
-          element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
-        />
+
         <Route
           path="*"
           element={

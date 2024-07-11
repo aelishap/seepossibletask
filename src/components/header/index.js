@@ -3,42 +3,39 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
 import { AUTH } from '../../redux/actionTypes';
+import { Typography } from 'antd';
 
 const Header = () => {
+  const user= JSON.parse(localStorage.getItem("user"))
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleCartClick = () => {
     navigate('/cart');
   };
 
-  const handleProfileClick = ()=>{
-    navigate('/profile');
-  }
-
   const onLogout = ()=>{
     dispatch({
-        type: AUTH,
+      type: AUTH,
         payload: false
       })
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+
     navigate('/login');
   }
 
   return (
-    <div className="flex justify-between items-center p-4  text-white bg-[#ECBC76]"  >
-      <div className="text-3xl font-bold">Aelisha</div>
+    <div className="flex justify-between items-center p-4  text-black bg-[#fff]"  >
+      <div className="text-3xl font-semibold text-[#242424] cursor-pointer" onClick={()=>navigate("/dashboard")}>JEWEL DESIGN</div>
       <div className="flex items-center space-x-4">
         <ShoppingCartOutlined
           className="text-2xl cursor-pointer"
           onClick={handleCartClick}
         />
-        <UserOutlined   className="text-2xl cursor-pointer"
-          onClick={handleProfileClick} />
-          <button
-          onClick={onLogout}
-          className="px-4 py-2 bg-[#E48700] rounded hover:bg-[#f8e1c0]"
-        >
-          Logout
-        </button>
+        <Typography className='text-[16px]'>Welcome, {" "}{user?.username}</Typography>
+        <div style={{borderLeft:"2px solid black"}} className='h-5'></div>
+        <Typography className=' text-[16px] hover:text-[black] cursor-pointer'  onClick={onLogout}> Logout</Typography>
+
       </div>
     </div>
   );

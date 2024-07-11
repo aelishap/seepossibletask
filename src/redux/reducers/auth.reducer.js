@@ -3,7 +3,9 @@ import { ADDUSERDETAIL, AUTH } from "../actionTypes";
   
   const initialState = {
     user: null,
-    isAuthenticated:false
+    isAuthenticated:false,
+    products: [],
+    error: null
   };
   export default (state = initialState, action) => {
     switch (action.type) {

@@ -1,2 +1,4 @@
 export const ADDUSERDETAIL = "ADDUSERDETAIL"
 export const AUTH = "AUTH"
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCTS_ERROR = 'GET_PRODUCTS_ERROR';

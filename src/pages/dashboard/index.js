@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
 import Product from '../../components/product';
 import { message, Typography } from 'antd';
 import Layout from '../layout';
@@ -19,14 +17,12 @@ const Dashboard = () => {
     }
   }, []);
   
-  console.log(products,'products')
   useEffect(()=>{
     dispatch(fetchProducts())
   },[])
 
   const addToCart = (product) => {
     if (cart.find(item => item.id === product.id)) {
-      console.log("ahgasgasgas")
       message.error('Product already added to cart!');
       return;
     }
@@ -36,8 +32,6 @@ const Dashboard = () => {
 
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
-
- 
 
   return (
     <Layout>

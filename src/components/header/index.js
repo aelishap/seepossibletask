@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
+import {  useDispatch } from 'react-redux';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import { AUTH } from '../../redux/actionTypes';
 import { Typography } from 'antd';
 
@@ -9,6 +9,7 @@ const Header = () => {
   const user= JSON.parse(localStorage.getItem("user"))
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const handleCartClick = () => {
     navigate('/cart');
   };
